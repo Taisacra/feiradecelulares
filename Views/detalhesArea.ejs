@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhes da Área</title>
+</head>
+<body>
+  <div>
+    <% if (area.ocupacao) { %>
+      <h2>Área <%= area.area %></h2>
+      <ul>
+        <% celulares.forEach(celular => { %>
+          <li>
+            Modelo: <%= celular.modelo %> | Preço: R$ <%= celular.preco %>
+            <form action="/vender/<%= celular.id %>" method="POST" style="display:inline;">
+              <button type="submit">Vender</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>Essa área está vazia.</p>
+    <% } %>
+  </div>
+</body>
+</html>

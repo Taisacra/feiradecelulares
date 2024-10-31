@@ -1,7 +1,7 @@
 const { DataTypes, Sequelize } = require("sequelize");
 const connection = require("./database");
 
-const Representantes = connection.define('Representantes',{
+const Representante = connection.define('Representante',{
         id_Representante: {
           type: DataTypes.INTEGER,
           allowNull: false,
@@ -14,14 +14,14 @@ const Representantes = connection.define('Representantes',{
         },
     },
       {
-        tableName: 'representantes',
+        tableName: 'representante',
         timestamps: false,
       }
     );
     
-      async function sincronizarRepresentantes() {
+      async function sincronizarRepresentante() {
         try {
-          await Representantes.sync({ force: false });
+          await Representante.sync({ force: false });
         } catch (error) {
           console.error("Erro ao sincronizar a tabela: ", error);
         } finally {
@@ -31,7 +31,7 @@ const Representantes = connection.define('Representantes',{
       }
       
     
-      module.exports = Representantes;
+      module.exports = Representante;
 
 
     

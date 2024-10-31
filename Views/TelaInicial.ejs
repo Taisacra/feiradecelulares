@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Áreas de Alocação</title>
+  <style>
+    .area {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .ocupado {
+      background-color: #0000FF;
+      color: #FFF;
+    }
+    .disponivel {
+      background-color: #FFFFFF;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; flex-wrap: wrap;">
+    <% areas.forEach(area => { %>
+      <div
+        class="area <%= area.disponivel ? 'disponivel' : 'ocupado' %>"
+        onclick="handleSelectArea(<%= JSON.stringify(area) %>)"
+      >
+        Área <%= area.area %>
+      </div>
+    <% }); %>
+  </div>
+
+  <!-- Seção para exibir detalhes da área -->
+  <div id="detalhesArea" style="display: none; margin-top: 20px;">
+    <h2>Detalhes da Área</h2>
+    <p id="areaNumero"></p>
+    <p id="areaStatus"></p>
+  </div>
+
+  <!-- Script de interatividade -->
+  <script>
+    function handleSelectArea(area) {
+      // Atualiza os elementos com os detalhes da área selecionada
+      document.getElementById('areaNumero').textContent = 'Área Número: ' + area.area;
+      document.getElementById('areaStatus').textContent = 'Status: ' + (area.disponivel ? 'Disponível' : 'Ocupado');
+      
+      // Exibe a seção de detalhes
+      document.getElementById('detalhesArea').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
